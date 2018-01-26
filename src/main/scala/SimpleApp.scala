@@ -10,9 +10,11 @@ object SimpleApp {
       .config("spark.master", "local")
       .getOrCreate()
     val logData = spark.read.textFile(logFile).cache()
-    val numberOfGods = logData.filter(line => line.toLowerCase.contains("god")).count()
-    val numberOfDevils = logData.filter(line => line.toLowerCase.contains("devil")).count()
-    println(s"Lines with god: $numberOfGods, Lines with devil: $numberOfDevils")
+    val countsMap = collection.mutable.Map[String, Long]()
+    for (argument <- args) {
+      countsMap.put(argument, logData.filter(line => line.toLowerCase.contains(argument)).count())
+    }
+    println(countsMap)
     spark.stop()
   }
 }
