@@ -10,3 +10,6 @@ Created after following the quickstart guide at https://spark.apache.org/docs/la
 
 ## Purpose
 A first taste of Spark.
+
+## How to run from command line
+$ `sbt "run god devil jesus christ mcdonalds"`
