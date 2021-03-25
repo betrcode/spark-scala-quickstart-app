@@ -5,8 +5,7 @@ import org.apache.spark.sql.SparkSession
 object SimpleApp {
   def main(args: Array[String]) {
     val logFile = "./src/main/resources/pg10.txt" // Should be some file on your system
-    val spark = SparkSession.builder
-      .appName("Simple Application")
+    val spark = SparkSession.builder.appName("Simple Application")
       .config("spark.master", "local")
       .getOrCreate()
     val logData = spark.read.textFile(logFile).cache()
